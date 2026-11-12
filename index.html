@@ -19,7 +19,6 @@
       height: 100vh;
       --poster-color: #18181b;
     }
-    /* Indikator loading agar proses unduh model terlihat jelas */
     .progress-bar {
       display: block;
       width: 60%;
@@ -44,7 +43,6 @@
       border-radius: 10px;
       transition: width 0.2s;
     }
-    /* Label status di bagian atas */
     .badge-info {
       position: absolute;
       top: 16px;
@@ -60,7 +58,21 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       z-index: 10;
     }
-    /* Tombol Proyeksikan AR */
+    #error-msg {
+      display: none;
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(220, 38, 38, 0.92);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+      max-width: 85%;
+      z-index: 20;
+    }
     #ar-button {
       background-color: #007bff;
       color: #ffffff;
@@ -86,10 +98,11 @@
 <body>
 
   <div class="badge-info">Mode BIM AR • Skala Terkunci 1:1</div>
+  <div id="error-msg">Gagal memuat model. Pastikan file <b>AR Purposes 2.glb</b> sudah terunggah di GitHub.</div>
 
   <model-viewer 
     id="bim-viewer"
-    src="struktur.glb?v=2" 
+    src="AR%20Purposes%202.glb?v=3" 
     ar 
     ar-modes="webxr scene-viewer quick-look" 
     ar-scale="fixed" 
@@ -112,6 +125,7 @@
     const modelViewer = document.querySelector('#bim-viewer');
     const progressBar = document.querySelector('.progress-bar');
     const updateBar = document.querySelector('.update-bar');
+    const errorMsg = document.querySelector('#error-msg');
 
     modelViewer.addEventListener('progress', (event) => {
       const progress = event.detail.totalProgress * 100;
@@ -119,6 +133,11 @@
       if (progress === 100) {
         progressBar.classList.add('hide');
       }
+    });
+
+    modelViewer.addEventListener('error', () => {
+      progressBar.classList.add('hide');
+      errorMsg.style.display = 'block';
     });
   </script>
 
