@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIM 3D AR - Struktur Kolom Balok (Skala 1:1)</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; background-color: #1e1e1e; font-family: sans-serif; }
+    model-viewer { width: 100vw; height: 100vh; }
+    #ar-button {
+      background-color: #007bff; color: white; border: none; border-radius: 50px;
+      padding: 14px 28px; font-size: 16px; font-weight: bold;
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); cursor: pointer; white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
 
+  <!-- ar-scale="fixed" mengunci ukuran asli 1:1 -->
+  <model-viewer 
+    src="AR Purposes.glb" 
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    ar-scale="fixed" 
+    camera-controls 
+    auto-rotate
+    shadow-intensity="1" 
+    alt="Model BIM 3D Struktur Kolom Balok">
+    
+    <button slot="ar-button" id="ar-button">
+      Proyeksikan AR (Skala 1:1)
+    </button>
+  </model-viewer>
+
+</body>
+</html>
